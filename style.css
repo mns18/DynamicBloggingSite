@@ -1,0 +1,16 @@
+
+.nav-item:hover{
+    background-color: whitesmoke;
+}
+.nav-item:hover .dropdown-menu{
+    display: block;
+    
+}
+
+
+.login-menu:hover{
+    background-color: rgb(120, 255, 120);
+}
+.login-menu:hover .login-item{
+    display: block;
+}
