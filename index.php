@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="User/css/style.css">
 </head>
 <body>
     <div  id="all" style="background-image:url(User/image/ezgif.com-webp-to-jpg.jpg); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
@@ -29,8 +29,8 @@
                             <i class="fa fa-user-circle-o" style="font-size:30px"></i>
                         </button>
                         <ul class="dropdown-menu login-item">
-                          <li><a class="dropdown-item " href="User/html/login.html">Login</a></li>
-                          <li><a class="dropdown-item" href="User/html/createAccount.html">Create Account</a></li>
+                          <li><a class="dropdown-item " href=login.php">Login</a></li>
+                          <li><a class="dropdown-item" href="create_account.php">Create Account</a></li>
                         </ul>
                       </div>
                 </div>
