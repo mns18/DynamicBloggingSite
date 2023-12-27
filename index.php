@@ -1,3 +1,4 @@
+<?php include("include/connection.php") ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -276,54 +277,74 @@
                 **************************************************************************** -->
                 <div class="row mb-5">
                     <div class="col-md-9">
-                        <div class="row">
-                            <div class="col-md-12 bg-body-secondary">
-                                <main id="main_content">
-                                    <div class="row bg-secondary-subtle rounded-1 ">
-                                        <div class="w-100 ">
-                                            <div style="float: left;">
-                                                <h2 class="">Java</h2>
-                                            </div>
-                                            <div class="mt-3" style="float: right;">
-                                                <a href="User/html/posts.html" class="text-end text-body text-decoration-none mb-2">View All</a>
-                                            </div>
-                                        </div>
-                                        
-                                        
-        
-                                        <div class="col-sm-4">
-                                            <div class="card mb-3">
-                                                <div class="post m-1 card-body">
-                                                <a href="User/html/post.html" style="text-decoration: none;" class="text-black">
-                                                <img src="User/image/java-programming-tutorials-tips.png" alt="" class="img-thumbnail ">
-                                                <p> Why we use java in programming.</p></a>
+                      <?php 
+                        $post_all_tQuery = "SELECT * FROM categories WHERE cat_status = 'publish'";
+                        $post_all_tRes = mysqli_query($connection, $post_all_tQuery);
+                        if(mysqli_num_rows($post_all_tRes)> 0){
+                          while($tag = mysqli_fetch_assoc($post_all_tRes)){
+                            $tag_id = $tag['cat_id'];
+                            $tag_name = $tag['cat_title'];
+                            echo $tag_name;
+                            $tag_post_query = "SELECT * FROM posts WHERE post_category_id = $tag_id ";
+                            $tag_post_res = mysqli_query($connection, $tag_post_query);
+                            if(mysqli_num_rows($tag_post_res)> 0 ){
+                              ?>
+                              <div class="row">
+                                <div class="col-md-12 bg-body-secondary">
+                                    <main id="main_content">
+                                        <div class="row bg-secondary-subtle rounded-1 ">
+                                            <div class="w-100 ">
+                                                <div style="float: left;">
+                                                    <h2 class=""><?php echo $tag_name; ?></h2>
+                                                </div>
+                                                <div class="mt-3" style="float: right;">
+                                                    <a href="User/html/posts.html" class="text-end text-body text-decoration-none mb-2">View All</a>
                                                 </div>
                                             </div>
-                                          </div>
-        
-                                          <div class="col-sm-4">
-                                            <div class="card">
-                                            <div class="post m-1 card-body">
-                                              <a href="User/html/post.html" style="text-decoration: none;" class="text-black">
-                                              <img src="User/image/java-programming-tutorials-tips.png" alt="" class="img-thumbnail ">
-                                              <p> Why we use java in programming.</p></a>
-                                            </div>
-                                          </div>
+                                            <?php
+                                              $count = 0;
+                                              while($post = mysqli_fetch_assoc($tag_post_res)){
+                                                $post_id = $post['post_id'];
+                                                $post_title =$post['post_title'];
+                                                $post_image = $post['post_image'];
+                                                $count = $count+1;
+                                                if($count < 4){
+
+                                                
+
+                                                
+
+                                                  ?>
+                                                    <div class="col-sm-4">
+                                                      <div class="card mb-3">
+                                                          <div class="post m-1 card-body">
+                                                          <a href="post.php?post_id=<?php echo $post_id;?>" style="text-decoration: none;" class="text-black">
+                                                          <img src="postImage/<?php echo $post_image; ?>" alt="" class="img-thumbnail ">
+                                                          <p><?php echo $post_title; ?></p></a>
+                                                          </div>
+                                                      </div>
+                                                    </div>
+                                                  <?php
+                                                }
+                                              }
+                                            ?>
+                                            
+            
+                                            
                                         </div>
-        
-                                        <div class="col-sm-4">
-                                            <div class="card">
-                                            <div class="post m-1 card-body">
-                                              <a href="User/html/post.html" style="text-decoration: none;" class="text-black">
-                                              <img src="User/image/java-programming-tutorials-tips.png" alt="" class="img-thumbnail ">
-                                              <p> Why we use java in programming.</p></a>
-                                            </div>
-                                          </div>
-                                        </div>
-                                    </div>
-                                </main>
+                                    </main>
+                                </div>
                             </div>
-                        </div>
+
+
+                            <?php
+
+                            }
+                          }
+                        }
+
+                      ?>
+                        
                   
         
                         <div class="row">
