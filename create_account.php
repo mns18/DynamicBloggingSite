@@ -15,7 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
     <script src="../js/createAc.js" ></script>
 
-    <link rel="stylesheet" href="../css/createAccount.css">
+    <link rel="stylesheet" href=User/css/createAccount.css">
 </head>
 <body>
     <header id="header" style="background-color: #00acee;">
@@ -249,7 +249,7 @@
                                 if($create_res){
                                     ?>
                                     <div class="alert bg-success top-0 position-absolute z-3 ">
-                                        <span class="closebtn"
+                                    <span class="closebtn float-end"style = "font-size: 20px; cursor: pointer;"
                                             onclick="this.parentElement.style.display='none';">&times;</span>
                                         <strong class=" text-white ">Successfully!</strong>
                                         <p class=" text-white ">Account Created</p>
@@ -258,7 +258,7 @@
                                 }else{
                                     ?>
                                     <div class="alert bg-danger top-0 position-absolute z-3 ">
-                                        <span class="closebtn"
+                                    <span class="closebtn float-end"style = "font-size: 20px; cursor: pointer;"
                                             onclick="this.parentElement.style.display='none';">&times;</span>
                                         <strong class=" text-white ">Created Problem!</strong>
                                         <p class=" text-white ">Please Tray again for create a new account</p>
@@ -268,7 +268,7 @@
                             }else{
                                 ?>
                                     <div class="alert bg-danger top-0 position-absolute z-3 ">
-                                        <span class="closebtn"
+                                    <span class="closebtn float-end"style = "font-size: 20px; cursor: pointer;"
                                             onclick="this.parentElement.style.display='none';">&times;</span>
                                         <strong class=" text-white ">Problem!</strong>
                                         <p class=" text-white ">confirm password doesn't match with password</p>
