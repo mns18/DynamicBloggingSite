@@ -2,7 +2,14 @@
 .nav-item:hover{
     background-color: whitesmoke;
 }
-.nav-item:hover .dropdown-menu{
+.top-menu:hover .sub1-menu{
+    display: block;
+    
+}
+.sub3-menu{
+    display: none;
+}
+.sub2-menu:hover .sub3-menu{
     display: block;
     
 }
@@ -13,4 +20,12 @@
 }
 .login-menu:hover .login-item{
     display: block;
+}
+
+
+.right-dropdown a:focus{
+    border: none;
+}
+.right-dropdown:hover ul{
+    margin-left: 100;
 }

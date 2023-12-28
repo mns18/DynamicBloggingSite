@@ -12,7 +12,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="User/css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div  id="all" style="background-image:url(User/image/ezgif.com-webp-to-jpg.jpg); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
@@ -52,36 +52,31 @@
                                 <span class="navbar-toggler-icon"></span>
                               </button>
                               <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                                <ul class="navbar-nav">
-                                  <li class="nav-item">
+                                <ul class="navbar-nav ">
+                                  <li class="nav-item top-menu">
                                     <a class="nav-link" href="#">Home</a>
                                   </li>
                                   
-                                  <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Course</a>
-                                    <ul class="dropdown-menu">
-                                      <li><a class="dropdown-item" href="#">jh</a></li>
-                                      <li><a class="dropdown-item" href="#">Another link</a></li>
-                                      <li><a class="dropdown-item" href="#">A third link</a></li>
-                                    </ul>
-                                  </li>
                                   
-                                  <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Tutorials</a>
-                                    <ul class="dropdown-menu">
-                                      <li><a class="dropdown-item" href="#">Link</a></li>
-                                      <li><a class="dropdown-item" href="#">Another link</a></li>
-                                      <li><a class="dropdown-item" href="#">A third link</a></li>
-                                    </ul>
-                                  </li>
-                                  
-                                  
-                                  <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Bologs</a>
-                                    <ul class="dropdown-menu">
-                                      <li><a class="dropdown-item" href="#">Link</a></li>
-                                      <li><a class="dropdown-item" href="#">Another link</a></li>
-                                      <li><a class="dropdown-item" href="#">A third link</a></li>
+                                  <li class="nav-item sub1-menu">
+                                    <a class="nav-link  dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                      Dropdown
+                                    </a>
+                                    <ul class="dropdown-menu  sub1-menu">
+                                      <li class="nav-item"><a class="dropdown-item" href="#">Menu item</a></li>
+                                      <li class="nav-item"><a class="dropdown-item" href="#">Menu item</a></li>
+                                      <li class="nav-item dropend  sub2-menu"><a class="dropdown-item" href="#">Menu item</a>
+                                        
+                                        <a type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                          Dropend
+                                        </a>
+                                        <ul class="dropdown-menu sub3-menu">
+                                        <li class="nav-item"><a class="dropdown-item" href="#">Menu item</a></li>
+                                        <li class="nav-item"><a class="dropdown-item" href="#">Menu item</a></li>
+                                        </ul>
+                                      
+                                    </li>
+                                      
                                     </ul>
                                   </li>
                                 </ul>
