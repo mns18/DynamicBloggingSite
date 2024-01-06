@@ -23,9 +23,7 @@
 
 <body>
     <div class="all">
-        <header>
-
-        </header>
+        <?php include ('include/header.php'); ?>
 
         <div class="container-fluid">
             <div class="row">
@@ -86,7 +84,7 @@
                                                                 <td><?php echo $post_category_name ?></td>
                                                                 <td><img style = "height:70px; weight: 70px" class="m-1" src="../postImage/<?php echo$post_image; ?>" alt=""></td>
                                                                 <td>Status</td>
-                                                                <td><a href="#" class="text-decoration-none text-warning">Edit</a></td>
+                                                                <td><a href="edit_post.php?post_id=<?php echo $post_id;?>" class="text-decoration-none text-warning">Edit</a></td>
                                                                 <td><a class="text-decoration-none text-danger" href="#">Delete</a></td>
                                                             </tr>
 
@@ -132,6 +130,12 @@
                                         $user_image = $user['user_image'];
                                         $user_pass = $user['user_password'];
                                         $user_position = $user['user_position'];
+                                        $post_info = "SELECT * FROM posts WHERE post_author_id = $user_id AND post_status = 'Publish'";
+                                        $post_info_res = mysqli_query($connection, $post_info);
+                                        $num_o_approve = mysqli_num_rows($post_info_res);
+                                        $post_info_query = "SELECT * FROM posts WHERE post_author_id = $user_id AND post_status = 'Pending'";
+                                        $post_info_result = mysqli_query($connection, $post_info_query);
+                                        $num_o_uApp = mysqli_num_rows($post_info_result);
 
                                         
                                         
@@ -173,11 +177,11 @@
                                     </tr>
                                     <tr">
                                         <th scope="row">Post Approve</th>
-                                        <td>This is post title</td>
+                                        <td><?php echo $num_o_approve; ?></td>
                                     </tr>
                                     <tr">
                                         <th scope="row">Post Pending</th>
-                                        <td>This is post title</td>
+                                        <td><?php echo $num_o_uApp ?></td>
                                     </tr>
 
 
@@ -202,67 +206,103 @@
 
 
                                     <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLongTitle">Edit Information</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                    aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
+                                        <form action="" method="POST" >
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLongTitle">Edit Information</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    
 
 
-                                                <div class="mb-3 row">
-                                                    <label for="email" class="col-12 col-form-label">First Name</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" value="<?php echo $user_first_name; ?>"
-                                                            class="form-control" id="email" required>
+                                                    <div class="mb-3 row">
+                                                        <label for="" class="col-12 col-form-label">First Name</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="user_first_name" value="<?php echo $user_first_name; ?>"
+                                                                class="form-control" id="" required>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="email" class="col-12 col-form-label">Last Name</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" value="<?php echo $user_last_name; ?>"
-                                                            class="form-control" id="email" required>
+                                                    <div class="mb-3 row">
+                                                        <label for="email"  class="col-12 col-form-label">Last Name</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="user_last_name" value="<?php echo $user_last_name; ?>"
+                                                                class="form-control" id="email" required>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="email" class="col-12 col-form-label">Email</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="email" value="<?php echo $user_email; ?>"
-                                                            class="form-control" id="email">
+                                                    <div class="mb-3 row">
+                                                        <label for="email" class="col-12 col-form-label">Email</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="email" name="user_mail" value="<?php echo $user_email; ?>"
+                                                                class="form-control" id="email">
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="mb-3 row">
-                                                    <label for="email" class="col-12 col-form-label">Number</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="email" value="<?php echo $user_number; ?>"
-                                                            class="form-control" id="email">
+                                                    <div class="mb-3 row">
+                                                        <label for="email" class="col-12 col-form-label">Number</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="user_number" value="<?php echo $user_number; ?>"
+                                                                class="form-control" id="email">
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="email" class="col-12 col-form-label">Country</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" value="<?php echo $user_Country; ?>"
-                                                            class="form-control" id="email" required>
+                                                    <div class="mb-3 row">
+                                                        <label for="email" class="col-12 col-form-label">Country</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="user_country" value="<?php echo $user_Country; ?>"
+                                                                class="form-control" id="email" required>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="mb-3 row">
-                                                    <label for="email" class="col-12 col-form-label">Job</label>
-                                                    <div class="col-sm-10">
-                                                        <input type="text" value="<?php echo $user_job; ?>"
-                                                            class="form-control" id="email" required>
+                                                    <div class="mb-3 row">
+                                                        <label for="email" class="col-12 col-form-label">Job</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" name="user_job" value="<?php echo $user_job; ?>"
+                                                                class="form-control" id="email" required>
+                                                        </div>
                                                     </div>
+                                                    
                                                 </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary"
+                                                        data-dismiss="modal">Close</button>
+                                                    <button type="submit" name = edit_info class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </form>
 
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary">Save changes</button>
-                                            </div>
+                                            <?php 
+                                                if(isset($_POST['edit_info'])){
+
+                                                    $user_first_name = $_POST['user_first_name'];
+                                                    $user_last_name = $_POST['user_last_name'];
+                                                    $user_mail = $_POST['user_mail'];
+                                                    $user_number = $_POST['user_number'];
+                                                    $user_country = $_POST['user_country'];
+                                                    $user_job = $_POST['user_job'];
+                                                    $update_quey = "UPDATE FROM users SET user_first_name = '$user_first_name', user_last_name = '$user_last_name', user_mail = '$user_mail', user_number = $user_number , user_country = '$user_country', user_job = '$user_job'";
+                                                    $update_res = mysqli_query($connection, $update_quey);
+                                                    if($update_res){
+                                                        ?>
+                                                        <div class="alert bg-success top-0 position-absolute z-3 ">
+                                                            <span class="closebtn float-end"style = "font-size: 20px; cursor: pointer;"
+                                                                onclick="this.parentElement.style.display='none';">&times;</span>
+                                                            <strong class=" text-white ">Update Successful!</strong>
+                                                            <p class=" text-white ">You have complete your update process....</p>
+                                                        </div>
+                                                        <?php
+                                                    }else{
+                                                        ?>
+                                                        <div class="alert bg-danger top-0 position-absolute z-3 ">
+                                                            <span class="closebtn float-end"style = "font-size: 20px; cursor: pointer;"
+                                                                onclick="this.parentElement.style.display='none';">&times;</span>
+                                                            <strong class=" text-white ">Incorrect Email!</strong>
+                                                            <p class=" text-white ">Your Email is incorrect please input your right email or create new one..</p>
+                                                        </div>
+                                                        <?php
+                                                    }
+                                                }
+                                            ?>
                                         </div>
                                     </div>
                                 </div>
@@ -272,12 +312,12 @@
 
                             <!-- Edit Image -->
                             <div class="col-12 mt-3">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+                                <button type="button" class="btn btn-primary btn-lg btn-block" name = "edit_image" data-toggle="modal"
                                     data-target="#editImage">
                                     Edit Image
                                 </button>
 
-                                <!-- Modal -->
+                                
                                 <div class="modal fade" id="editImage" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -312,12 +352,12 @@
 
                             <!-- Edit Password -->
                             <div class="col-12 mt-3">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+                                <button type="button" class="btn btn-primary btn-lg btn-block" name="edit_pass" data-toggle="modal"
                                     data-target="#editPassword">
-                                    Edit Image
+                                    Change Password
                                 </button>
 
-                                <!-- Modal -->
+                                
                                 <div class="modal fade" id="editPassword" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
@@ -369,15 +409,14 @@
                             </div>
 
 
-                            <!-- Edit Security Question  -->
+                            <!-- Add POst  -->
                             <div class="col-12  mt-3">
-                                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
-                                    data-target="#editSecurity">
-                                    Edit Information
-                                </button>
+                                <a href="add_post.php"  class="btn btn-primary btn-lg btn-block">
+                                    Add Post
+                                </a>
 
                                 <!-- Modal -->
-                                <div class="modal fade" id="editSecurity" tabindex="-1" role="dialog"
+                                <!-- <div class="modal fade" id="editSecurity" tabindex="-1" role="dialog"
                                     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -398,7 +437,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
 
 

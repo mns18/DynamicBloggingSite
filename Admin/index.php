@@ -33,109 +33,13 @@
     </header>
     <main class = 'all-content row border-top' style='background-color: #202926'>
         <div class='col-3 bg-secondary' style="height: 100vh; overflow-y: scroll" >
-            <aside id='left_bar'>
-                <div class = 'navbar'>
-                    <ul class='navbar-nav'>
-                        <li class ='nav-item '>
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Menu
-                                </a>
-            
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Add Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Edit Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Delete Menu</a></li>
-                                    
-            
-                                </ul>
-                            </div>
-                        </li>
-                        <li class ='nav-item '>
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Page
-                                </a>
-            
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Add Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Edit Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Delete Menu</a></li>
-                                    
-            
-                                </ul>
-                            </div>
-                        </li>
-                        <li class ='nav-item '>
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Post
-                                </a>
-            
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Add Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Edit Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Delete Menu</a></li>
-                                    
-            
-                                </ul>
-                            </div>    
-                        </li>
-                        <li class ='nav-item '>
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Users
-                                </a>
-            
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Add Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Edit Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Delete Menu</a></li>
-                                    
-            
-                                </ul>
-                            </div>    
-                        </li>
-                        <li class ='nav-item '>
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Permission
-                                </a>
-            
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Add Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Edit Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Delete Menu</a></li>
-                                    
-            
-                                </ul>
-                            </div>    
-                        </li>
-
-                        <li class ='nav-item '>
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Layout
-                                </a>
-            
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Add Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Edit Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Delete Menu</a></li>
-                                    
-            
-                                </ul>
-                            </div>    
-                        </li>
-                    </ul>
-                </div>
-            </aside>
+            <?php include("include/left_bar.php"); ?>
 
         </div>
 
         <div class='col-9 border-left h-100 overflow-y-scroll'>
             <main id='main_panel' class="text-white" style="height: 100vh; overflow-y: scroll">
-                Thi page for content.
+            <div class="position-absolute top-50 start-50 translate-middle"><h1 class = "d-block text-center text-success">Welcome Admin</h1></div>
             </main>
 
         </div>

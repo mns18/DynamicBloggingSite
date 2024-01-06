@@ -34,103 +34,7 @@
     </header>
     <main class = 'all-content row border-top' style='background-color: #202926'>
         <div class='col-3 bg-secondary' style="height: 100vh; overflow-y: scroll" >
-            <aside id='left_bar'>
-                <div class = 'navbar'>
-                    <ul class='navbar-nav'>
-                        <li class ='nav-item '>
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Menu
-                                </a>
-            
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Add Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Edit Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Delete Menu</a></li>
-                                    
-            
-                                </ul>
-                            </div>
-                        </li>
-                        <li class ='nav-item '>
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Page
-                                </a>
-            
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Add Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Edit Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Delete Menu</a></li>
-                                    
-            
-                                </ul>
-                            </div>
-                        </li>
-                        <li class ='nav-item '>
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Post
-                                </a>
-            
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Add Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Edit Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Delete Menu</a></li>
-                                    
-            
-                                </ul>
-                            </div>    
-                        </li>
-                        <li class ='nav-item '>
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Users
-                                </a>
-            
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Add Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Edit Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Delete Menu</a></li>
-                                    
-            
-                                </ul>
-                            </div>    
-                        </li>
-                        <li class ='nav-item '>
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Permission
-                                </a>
-            
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Add Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Edit Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Delete Menu</a></li>
-                                    
-            
-                                </ul>
-                            </div>    
-                        </li>
-
-                        <li class ='nav-item '>
-                            <div class="dropdown">
-                                <a class="btn dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Layout
-                                </a>
-            
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Add Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Edit Menu</a></li>
-                                    <li><a class="dropdown-item" href="#">Delete Menu</a></li>
-                                    
-            
-                                </ul>
-                            </div>    
-                        </li>
-                    </ul>
-                </div>
-            </aside>
+        <?php include("include/left_bar.php"); ?>
 
         </div>
 
@@ -140,10 +44,24 @@
                     <form action="" method="POST">
                         
                         <div class="mb-3 row">
-                            <label for="tagName" class="col-12 col-form-label mb-3">Tag Name</label>
-                            <div class="col-sm-10">
-                            <input type="text" name = "menu_name" class="form-control" id="tagName" required>
-                            </div>
+                            <?php 
+                                if(isset($_GET['cat_id'])){
+                                    $cat_id = $_GET['cat_id'];
+                                    $menu_name_query  = "SELECT * FROM categories WHERE cat_id = $cat_id";
+                                    $menu_name_res = mysqli_query($connection, $menu_name_query);
+                                    $menu_name_component = mysqli_fetch_assoc($menu_name_res);
+                                    $menu_nm = $menu_name_component['cat_title'];
+                                    echo "
+                                    <label for='tagName' class='col-12 col-form-label mb-3'>Tag Name</label>
+                                    <div class='col-sm-9'>
+                                        <input type='text' value = '$menu_nm' name = 'menu_name' class='form-control' id='tagName' required>
+                                    </div>
+                                    ";
+                                    
+                                }
+                                 
+                            ?>
+                            
                         </div>
                         <label for="position"  class="col-12 col-form-label mb-3">Select Position</label>
                         <select class="form-select w-75 mb-2" name = "menu_p_id" aria-label="Default select example" id="position">
@@ -172,15 +90,16 @@
                             <option value="draft">Draft</option>
                         </select>
 
-                        <button class="btn btn-primary btn-lg justify-content-end" type="submit" name = "add_menu">Add Menu</button>
+                        <button class="btn btn-primary btn-lg justify-content-end" type="submit" name = "edit_menu">Update Menu</button>
                     </form>
                     <?php 
-                    if(isset($_POST['add_menu'])){
+                    if(isset($_POST['edit_menu'])){
+                        $cat_id = $_GET['cat_id'];
                         $menu_name = $_POST['menu_name'];
                         $menu_position = $_POST['menu_p_id'];
                         $menu_status = $_POST['menu_status'];
 
-                        $add_menu_query = "INSERT INTO categories (cat_id, cat_title, cat_p_id, cat_status) VALUES ('', '$menu_name', $menu_position, '$menu_status')";
+                        $add_menu_query = "UPDATE categories SET cat_title = '$menu_name', cat_p_id = $menu_position, cat_status = '$menu_status' WHERE cat_id = $cat_id ";
                         $add_menu_res = mysqli_query($connection, $add_menu_query);
                         if($add_menu_res){
                             ?>
@@ -188,9 +107,10 @@
                                     <span class="closebtn float-end"style = "font-size: 20px; cursor: pointer;"
                                             onclick="this.parentElement.style.display='none';">&times;</span>
                                         <strong class=" text-white ">Successfully!</strong>
-                                        <p class=" text-white ">Menu Added</p>
+                                        <p class=" text-white ">Menu Update Successfully</p>
                                     </div>
                             <?php
+                            
 
                         }else{
                             ?>

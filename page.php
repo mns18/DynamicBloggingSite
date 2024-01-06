@@ -21,116 +21,62 @@
 </head>
 <body>
     <div  id="all" style="background-image:url(User/image/ezgif.com-webp-to-jpg.jpg); background-size: cover; background-repeat: no-repeat; background-attachment: fixed;">
-    <?php include("include/header.php");?>
-            <!-- *******************************************************
-                            Slide
-            ******************************************************** -->
-        <!-- slide insert here -->
-        <?php 
-          $select_slide_query = "SELECT * FROM slides WHERE slide_id = 1";
-          $select_slide_res = mysqli_query($connection, $select_slide_query);
-          if($select_slide_res){
-            $select = mysqli_fetch_assoc($select_slide_res);
-            $amount = $select['slide_amount'];
-            if($amount == 1){
-              include("Admin/include/slide1.php");
-            }elseif($amount == 2){
-              include("Admin/include/slide2.php");
-            }elseif($amount == 3){
-              include("Admin/include/slide3.php");
-            }else{
-              
-            }
-
-          }
-        ?>
+    <?php include("include/header.php"); ?>
+            
     </div>
     
-    <div id="all_content">
-         <div class="container  bg-body-secondary mt-2">
-                <!-- ****************************************************************************
-                                                All Posts
-                **************************************************************************** -->
-                <div class="row mb-5">
-                    <div class="col-md-9">
-                      <?php 
-                        $post_all_tQuery = "SELECT * FROM categories WHERE cat_status = 'publish'";
-                        $post_all_tRes = mysqli_query($connection, $post_all_tQuery);
-                        if(mysqli_num_rows($post_all_tRes)> 0){
-                          while($tag = mysqli_fetch_assoc($post_all_tRes)){
-                            $tag_id = $tag['cat_id'];
-                            $tag_name = $tag['cat_title'];
-                            echo $tag_name;
-                            $tag_post_query = "SELECT * FROM posts WHERE post_category_id = $tag_id ";
-                            $tag_post_res = mysqli_query($connection, $tag_post_query);
-                            if(mysqli_num_rows($tag_post_res)> 0 ){
-                              ?>
-                              <div class="row">
-                                <div class="col-md-12 bg-body-secondary">
-                                    <main id="main_content">
-                                        <div class="row bg-secondary-subtle rounded-1 ">
-                                            <div class="w-100 ">
-                                                <div style="float: left;">
-                                                    <h2 class=""><?php echo $tag_name; ?></h2>
-                                                </div>
-                                                <div class="mt-3" style="float: right;">
-                                                    <a href="posts.php?cat_id=<?php echo $tag_id ?>&post_page=1" class="text-end text-body text-decoration-none mb-2">View All</a>
-                                                </div>
-                                            </div>
-                                            <?php
-                                              $count = 0;
-                                              while($post = mysqli_fetch_assoc($tag_post_res)){
-                                                $post_id = $post['post_id'];
-                                                $post_title =$post['post_title'];
-                                                $post_image = $post['post_image'];
-                                                $count = $count+1;
-                                                if($count < 4){
+    <div id="all_content ">
+        <main class = "container">
+            <?php 
+                if(isset($_GET['page_id'])){
+                    $page_id = $_GET['page_id'];
+                    $page_query = "SELECT * FROM pages WHERE Page_id = $page_id";
+                    $page_res = mysqli_query($connection, $page_query);
+                    if($page_res){
+                        $page = mysqli_fetch_assoc($page_res);
+                        $page_title = $page['page_title'];
+                        $page_type = $page['page_type'];
+                        $page_image = $page['page_image'];
+                        $page_content = $page['page_content'];
 
-                                                
-
-                                                
-
-                                                  ?>
-                                                    <div class="col-sm-4">
-                                                      <div class="card mb-3">
-                                                          <div class="post m-1 card-body">
-                                                          <a href="post.php?post_id=<?php echo $post_id;?>" style="text-decoration: none;" class="text-black">
-                                                          <img src="postImage/<?php echo $post_image; ?>" alt="" class="img-thumbnail ">
-                                                          <p><?php echo $post_title; ?></p></a>
-                                                          </div>
-                                                      </div>
-                                                    </div>
-                                                  <?php
-                                                }
-                                              }
-                                            ?>
-                                            
-            
-                                            
-                                        </div>
-                                    </main>
-                                </div>
+                        echo "<div class='card mt-5'>";
+                        if($page_type = 'Person'){
+                            ?>
+                            <div class="card_image mt-4">
+                                <img class= "mx-auto d-block rounded-circle" style= " width: 200px;" src="postImage/<?php echo $page_image; ?>" alt="">
                             </div>
 
-
                             <?php
+                        }else{
+                            ?>
+                            <div class="card_image mt-4">
+                                <img src="..." class="img-fluid" alt="...">
+                            </div>
+                        <?php }
+                        ?>
+                        <div class="card mt-5">
+                            
 
-                            }
-                          }
-                        }
+                            <div class="card-title">
+                                <h3 class ="d-block text-center"><?php echo $page_title; ?></h3>
+                            </div>
+                                
+                            <div class="card-body">
+                                <p class = "card-text ">
+                                    <?php echo $page_content; ?>
+                                </p>
+                            </div>
+                        </div>
 
-                      ?>
-                                        
-                    </div>
-
-
+<?php
+                    }
+            }
+            ?>
+            
+        </main>
+         
+               
                     
-
-                    <div class="col-md-3 bg-light-subtle">
-                        <?php include("right_bar.php"); ?>
-                    </div>
-                </div>
-        </div>
 
         <footer class="footer-02">
           <div class="container bg-dark text-white">
@@ -205,10 +151,5 @@
           </div>
         </footer>
     </div>
-    <script src="js/bootstrap.min.js"></script>
-  <script src="js/bootnavbar.js"></script>
-  <script>
-    new bootnavbar();
-  </script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 
 
- <?php include("../include/connection.php");?>;
+<?php include("../include/connection.php");?>;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,8 +47,9 @@
                     <thead>
                         <tr>
                             <th class="text-white" scope="col">NO: </th>
-                            <th class="text-white" scope="col">Name</th>
-                            <th class="text-white" scope="col">Position</th>
+                            <th class="text-white" scope="col">Title</th>
+                            <th class="text-white" scope="col">Type</th>
+                            <th class="text-white" scope="col">Image</th>
                             <th class="text-white" scope="col">Status</th>
                             <th class="text-white" scope="col">Edit</th>
                             <th class="text-white" scope="col">Delete</th>
@@ -57,34 +58,31 @@
                     </thead>
                     <tbody>
                     <?php 
-                        $all_category_query = "SELECT * FROM categories WHERE cat_status != 'trash'";
-                        $all_category_res = mysqli_query($connection, $all_category_query);
+                        $all_page_query = "SELECT * FROM pages WHERE page_status != 'trash'";
+                        $all_category_res = mysqli_query($connection, $all_page_query);
                         if(mysqli_num_rows($all_category_res) > 0){
-                            $n_o_c = 0;
-                            while($category = mysqli_fetch_assoc($all_category_res)){
-                                $n_o_c = $n_o_c + 1;
-                                $cat_id = $category['cat_id'];
-                                $cat_name = $category['cat_title'];
-                                $cat_p_id = $category['cat_p_id'];
-                                if($cat_p_id > 0){
-                                    $position_query = "SELECT * FROM categories WHERE cat_id = $cat_p_id";
-                                    $position_res = mysqli_query($connection, $position_query);
-                                    $position_component = mysqli_fetch_assoc($position_res);
-                                    $position = $position_component['cat_title'];
-                                }else{
-                                    $position = 'Top';
-                                }
+                            $n_o_p = 0;
+                            while($page = mysqli_fetch_assoc($all_category_res)){
+                                $n_o_p = $n_o_p + 1;
+                                $page_id = $page['page_id'];
+                                $page_title = $page['page_title'];
+                                $page_type = $page['page_type'];
+                                $page_image = $page['page_image'];
                                 
-                                $cat_status = $category['cat_status'];
+
+                                $page_status = $page['page_status'];
                                 ?>
-                                <tr>
-                                <th class="text-white" scope="row"><?php echo $n_o_c; ?></th>
-                                <td class="text-white"><?php echo $cat_name ?></td>
-                                <td class="text-white"><?php echo $position ?></td>
-                                
-                                <td class="text-white"><?php echo $cat_status; ?></td>
-                                <td><a href="edit_menu.php?cat_id=<?php echo $cat_id;?>" class="text-decoration-none text-warning">Edit</a></td>
-                                <td><a href="menus.php?delete_id=<?php echo $cat_id;?>" class="text-decoration-none text-danger" href="#">Delete</a></td>
+                                <tr style = "height:80px">
+                                <th class="text-white" scope="row"><?php echo $n_o_p; ?></th>
+                                <td class="text-white"><?php echo $page_title ?></td>
+                                <td class="text-white"><?php echo $page_type ?></td>
+                                <td class="text-white" ">
+                                    <img src="../postImage/<?php echo $page_image; ?>" style = "height:70; margin-top: 5px;">
+                                </td>
+                                <td class="text-white"><?php echo $page_status; ?></td>
+
+                                <td><a href="edit_page.php?page_id=<?php echo $page_id;?>" class="text-decoration-none text-warning">Edit</a></td>
+                                <td><a href="pages.php?delete_id=<?php echo $page_id;?>" class="text-decoration-none text-danger" href="#">Delete</a></td>
                             </tr>
                                 <?php
                             }
@@ -103,8 +101,8 @@
             </main>
                     <?php 
                     if(isset($_GET['delete_id'])){
-                        $cat_id = $_GET['delete_id'];
-                        $delete_query = "UPDATE categories SET  cat_status = 'trash' WHERE cat_id = $cat_id ";
+                        $page_id = $_GET['delete_id'];
+                        $delete_query = "UPDATE pages SET  page_status = 'trash' WHERE page_id = $page_id ";
                         $delete_menu_res = mysqli_query($connection, $delete_query);
                         if($delete_menu_res){
                             ?>

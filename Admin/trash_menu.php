@@ -1,6 +1,6 @@
 
 
- <?php include("../include/connection.php");?>;
+<?php include("../include/connection.php");?>;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +57,7 @@
                     </thead>
                     <tbody>
                     <?php 
-                        $all_category_query = "SELECT * FROM categories WHERE cat_status != 'trash'";
+                        $all_category_query = "SELECT * FROM categories WHERE cat_status = 'trash'";
                         $all_category_res = mysqli_query($connection, $all_category_query);
                         if(mysqli_num_rows($all_category_res) > 0){
                             $n_o_c = 0;
@@ -84,7 +84,7 @@
                                 
                                 <td class="text-white"><?php echo $cat_status; ?></td>
                                 <td><a href="edit_menu.php?cat_id=<?php echo $cat_id;?>" class="text-decoration-none text-warning">Edit</a></td>
-                                <td><a href="menus.php?delete_id=<?php echo $cat_id;?>" class="text-decoration-none text-danger" href="#">Delete</a></td>
+                                <td><a href="menus.php?delete_id=<?php echo $cat_id;?>" class="text-decoration-none text-danger" href="#">Remove</a></td>
                             </tr>
                                 <?php
                             }

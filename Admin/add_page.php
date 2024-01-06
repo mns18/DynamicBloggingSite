@@ -35,57 +35,66 @@
     <main class = 'all-content row border-top' style='background-color: #202926'>
         <div class='col-3 bg-secondary' style="height: 100vh; overflow-y: scroll" >
         <?php include("include/left_bar.php"); ?>
+
         </div>
 
         <div class='col-9 border-left h-100 overflow-y-scroll'>
             <main id='main_panel' class="text-white" style="height: 100vh; overflow-y: scroll overflow-hidden">
                 <div class="container-fluid m-5 ">
-                    <form action="" method="POST">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         
                         <div class="mb-3 row">
-                            <label for="tagName" class="col-12 col-form-label mb-3">Tag Name</label>
-                            <div class="col-sm-10">
-                            <input type="text" name = "menu_name" class="form-control" id="tagName" required>
+                            <label for="tagName" class="col-12 col-form-label mb-3">Page Title</label>
+                            <div class="col-sm-9">
+                            <input type="text" name = "page_title" class="form-control" id="tagName" required>
                             </div>
                         </div>
-                        <label for="position"  class="col-12 col-form-label mb-3">Select Position</label>
-                        <select class="form-select w-75 mb-2" name = "menu_p_id" aria-label="Default select example" id="position">
-                        <option selected>Open this select menu</option>
-                        <option value = "0">Top</option>
-                        <?php
-                                $menu_query = "SELECT * FROM categories WHERE cat_status = 'publish'";
-                                $menu_res = mysqli_query($connection, $menu_query);
-                                if(mysqli_num_rows($menu_res) >0){
-                                    while($menu = mysqli_fetch_assoc($menu_res)){
-                                        $menu_id = $menu['cat_id'];
-                                        $menu_name = $menu['cat_title'];
-                                        echo "<option value='$menu_id'>$menu_name</option>";
-                                    }
-                                }
-                            ?>
-                            
-                            
-                            
+                        <label for="position"  class="col-12 col-form-label mb-3">Page Type</label>
+                        <select class="form-select w-75 mb-5" name = "page_type" aria-label="Default select example" id="position">
+                            <option selected>Open this select menu</option>
+                            <option value="Person">Person</option>
+                            <option value="Other">Other</option>
                         </select>
+                        <div class="mb-3 row">
+                            <label for="tagName" class="col-12 col-form-label mb-3">Page Image</label>
+                            <div class="col-sm-9">
+                            <input type="file"  name = "page_image" class="form-control" id="tagName" required>
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="tagName" class="col-12 col-form-label mb-3">Page Content</label>
+                            <div class="form-floating">
+                                
+                                <textarea class="form-control w-75" name="page_content" placeholder="Text here" id="floatingTextarea2" style="height: 100px">
+                            
+                                </textarea>
+                                <label for="floatingTextarea2">Comments</label>
+                            </div>
+                        </div>
+                        
 
                         <label for="position"  class="col-12 col-form-label mb-3">Status</label>
-                        <select class="form-select w-75 mb-5" name = "menu_status" aria-label="Default select example" id="position">
+                        <select class="form-select w-75 mb-5" name = "page_status" aria-label="Default select example" id="position">
                             <option selected>Open this select menu</option>
-                            <option value="publish">publish</option>
-                            <option value="draft">Draft</option>
+                            <option value="Publish">publish</option>
+                            <option value="Draft">Draft</option>
                         </select>
 
-                        <button class="btn btn-primary btn-lg justify-content-end" type="submit" name = "add_menu">Add Menu</button>
+                        <button class="btn btn-primary btn-lg justify-content-end" type="submit" name = "add_page">Add Menu</button>
                     </form>
                     <?php 
-                    if(isset($_POST['add_menu'])){
-                        $menu_name = $_POST['menu_name'];
-                        $menu_position = $_POST['menu_p_id'];
-                        $menu_status = $_POST['menu_status'];
+                    if(isset($_POST['add_page'])){
+                        $page_name = $_POST['page_title'];
+                        $page_type = $_POST['page_type'];
+                        $page_status = $_POST['page_status'];
+                        $page_image = $_FILES['page_image']['name'];
+                        $page_image_temp = $_FILES['page_image']['tmp_name'];
+                        $page_content = $_POST['page_content'];
+                        move_uploaded_file($page_image_temp, "../postImage/$page_image" );
 
-                        $add_menu_query = "INSERT INTO categories (cat_id, cat_title, cat_p_id, cat_status) VALUES ('', '$menu_name', $menu_position, '$menu_status')";
-                        $add_menu_res = mysqli_query($connection, $add_menu_query);
-                        if($add_menu_res){
+                        $add_page_query = "INSERT INTO pages ( page_title, page_type, page_image, page_content, page_status) VALUES ( '$page_name', '$page_type', '$page_image', '$page_content', '$page_status')";
+                        $add_page_res = mysqli_query($connection, $add_page_query);
+                        if($add_page_res){
                             ?>
                                 <div class="alert bg-success top-0 position-absolute z-3 ">
                                     <span class="closebtn float-end"style = "font-size: 20px; cursor: pointer;"

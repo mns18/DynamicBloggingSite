@@ -1,19 +1,27 @@
+.navbar-custom {
+    background-color: #3498db;
+  }
 
-.nav-item:hover{
-    background-color: whitesmoke;
-}
-.top-menu:hover .sub1-menu{
-    display: block;
-    
-}
-.sub3-menu{
-    display: none;
-}
-.sub2-menu:hover .sub3-menu{
-    display: block;
-    
-}
+  .navbar-custom a {
+    color: #fff;
+  }
 
+  .navbar-custom a:hover {
+    color: #ecf0f1;
+  }
+
+  .login-bar {
+    background-color: #2c3e50;
+    color: #fff;
+  }
+
+  .login-bar a {
+    color: #fff;
+  }
+
+  .login-bar a:hover {
+    color: #ecf0f1;
+  }
 
 .login-menu:hover{
     background-color: rgb(120, 255, 120);
@@ -22,10 +30,3 @@
     display: block;
 }
 
-
-.right-dropdown a:focus{
-    border: none;
-}
-.right-dropdown:hover ul{
-    margin-left: 100;
-}

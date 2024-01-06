@@ -9,104 +9,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"></script>
-    <script src="../js/createAc.js" ></script>
-
-    <link rel="stylesheet" href=User/css/createAccount.css">
+    <link
+  rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kmlpandey77/bootnavbar@v1.1.1/css/bootnavbar.css"/>
+  <script src="https://cdn.jsdelivr.net/gh/kmlpandey77/bootnavbar@v1.1.1/js/bootnavbar.js"></script>
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/bootnavbar.css" />
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header id="header" style="background-color: #00acee;">
-        <div class="header container">
-        <div class="header-tl" style="display: block;width: 100%; min-height: 70px;">
-            <div class="header-title" style="float: left;">
-                <h1 class="">Awesome Blogging</h1>
-                
-            </div>
-            <div style="float: right;">
-                <div class="dropdown mt-4">
-                    <button class="btn dropdown-toggle border-0" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fa fa-user-circle-o" style="font-size:30px"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="User/html/login.html">Login</a></li>
-                      <li><a class="dropdown-item" href="#">Create Account</a></li>
-                    </ul>
-                  </div>
-            </div>
-        </div>
-
-        
-           
-            
-            
-            <div class=" row">
-                <div class="col-md-3 d-sm-none">
-                    <h2>Awesome Blogging</h2>
-                </div>
-                <div class="col-md-9">
-                    <nav class="navbar navbar-expand-sm">
-                        <div class="container-fluid">
-                          <a class="navbar-brand" href="#">Logo</a>
-                          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-                            <span class="navbar-toggler-icon"></span>
-                          </button>
-                          <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                            <ul class="navbar-nav">
-                              <li class="nav-item">
-                                <a class="nav-link" href="#">Home</a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link" href="#">Movie</a>
-                              </li>
-                              <li class="nav-item">
-                                <a class="nav-link" href="#">Daily</a>
-                              </li>  
-                              <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
-                                <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="#">Link</a></li>
-                                  <li><a class="dropdown-item" href="#">Another link</a></li>
-                                  <li><a class="dropdown-item" href="#">A third link</a></li>
-                                </ul>
-                              </li>
-                              
-                              <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
-                                <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="#">Link</a></li>
-                                  <li><a class="dropdown-item" href="#">Another link</a></li>
-                                  <li><a class="dropdown-item" href="#">A third link</a></li>
-                                </ul>
-                              </li>
-                              
-                              
-                              <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
-                                <ul class="dropdown-menu">
-                                  <li><a class="dropdown-item" href="#">Link</a></li>
-                                  <li><a class="dropdown-item" href="#">Another link</a></li>
-                                  <li><a class="dropdown-item" href="#">A third link</a></li>
-                                </ul>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </nav>
-                </div>
-            </div>
-
-        </div>
-        
-    </header>
+   <?php include("include/header.php"); ?>
 
 
     <div class="container">
         <div class="row py-5 mt-4 align-items-center">
             <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
-                <img src="../icon/writing-blog-logo-content-logo-template_658057-29.avif" alt="" class="img-fluid mb-3 d-none d-md-block">
+                <img src="User/icon/writing-blog-logo-content-logo-template_658057-29.avif" alt="" class="img-fluid mb-3 d-none d-md-block">
                 <h1>Create an Account</h1>
                 <p class="font-italic text-muted mb-0">After creating an account you will be able to like, comment, post request and other... . .</p>
                 
@@ -221,7 +142,7 @@
 
 
                         <div class="text-center w-100">
-                            <p class="text-muted font-weight-bold">Already Registered? <a href="login.html" class="text-primary ml-2">Login</a></p>
+                            <p class="text-muted font-weight-bold">Already Registered? <a href="login.php" class="text-primary ml-2">Login</a></p>
                         </div>
 
                     </div>
