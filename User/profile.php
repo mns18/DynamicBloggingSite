@@ -411,7 +411,8 @@
 
                             <!-- Add POst  -->
                             <div class="col-12  mt-3">
-                                <a href="add_post.php"  class="btn btn-primary btn-lg btn-block">
+                                    <?php $user_id = $_GET['user_id'];?>
+                                <a href="add_post.php?user_id=<?php echo $user_id ?>"  class="btn btn-primary btn-lg btn-block">
                                     Add Post
                                 </a>
 

@@ -58,7 +58,7 @@
                                 </a>
             
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Post Request</a></li>
+                                    <li><a class="dropdown-item" href="post_request.php">Post Request</a></li>
                                     <li><a class="dropdown-item" href="#">Category Request</a></li>
                                     <li><a class="dropdown-item" href="#"></a></li>
                                     
@@ -89,7 +89,7 @@
                                 </a>
             
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="../header.php">Header</a></li>
+                                    <li><a class="dropdown-item" href="header.php">Header</a></li>
                                     <li><a class="dropdown-item" href="slide.php">Slide</a></li>
                                     <li><a class="dropdown-item" href="right_bar.php">Right Sidebar</a></li>
                                     <li><a class="dropdown-item" href="#">Footer</a></li>
